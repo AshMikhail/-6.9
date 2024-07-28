@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Profile edit |{% endblock title %}
+{% block content %}
+    <div class="row my-3 p-3 text-center">
+        <center><img class="rounded-circle account-img" src="{{ user.siteuser.profile_picture.url }} " width=400></center>
+    </div>
+    {% if user_form.errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <div id="form_errors">
+                {% for key, value in user_form.errors.items %}
+                    <strong>{{ value }}</strong>
+                {% endfor %}
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="form-content text-center">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="small mb-1">Имя Пользователя:</label>
+                            {{ user_form.username }}
+                        <label class="small mb-1">Сменить аватар:</label>
+                        {{ situeser_form.profile_picture }}
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            
+            <button type="submit" class="px-5 py-3 rounded-xl text-white bg-neutral-600 hover:bg-teal-700 text-center">Save Changes</button>
+            <button type="reset" class="px-5 py-3 rounded-xl text-white bg-neutral-600 hover:bg-teal-700 text-center">Reset</button>
+        </form>
+    </div>
+{% endblock content %}

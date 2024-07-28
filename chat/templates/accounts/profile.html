@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Prifile Edit | {% endblock %}
+
+{% block content %}
+    <div class="p-10 lg:p-20 text-center">
+        <h1 class="text-3xl lg:text-6xl text-white">Профиль пользователя: {{ request.user.username }}</h1>
+        <a href="/profile/edit/" class="text-red-600 hover:text-white">Редактировать Профиль</a>
+    </div>
+    {% if user.is_authenticated %}
+    <center><div>
+        <img src="{{ user.siteuser.profile_picture.url }}" width=200>
+        <p class="text-red-600">Username: {{ user }}</p></div></center>
+    {% else %}
+        <p>Войдите что бы посмотреть детали.</p>
+    {% endif %}
+{% endblock %}
